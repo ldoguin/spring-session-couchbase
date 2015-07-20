@@ -1,0 +1,24 @@
+apply from: JAVA_GRADLE
+apply from: TOMCAT_7_GRADLE
+
+tasks.findByPath("artifactoryPublish")?.enabled = false
+sonarRunner {
+	skipProject = true
+}
+
+dependencies {
+	compile project(':spring-session-couchbase'),
+			project(':spring-session-couchbase-listener'),
+            "com.couchbase.client:java-client:$couchbaseClientVersion",
+            "org.springframework:spring-web:$springVersion",
+            "org.springframework.session:spring-session:$springSessionVersion",
+			"org.springframework.security:spring-security-config:$springSecurityVersion",
+			"org.springframework.security:spring-security-web:$springSecurityVersion",
+			jstlDependencies
+
+	providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
+
+	testCompile "junit:junit:$junitVersion"
+
+	integrationTestCompile gebDependencies
+}

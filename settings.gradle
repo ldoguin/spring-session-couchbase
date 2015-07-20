@@ -1,0 +1,5 @@
+rootProject.name = 'spring-session-couchbase'
+include 'docs'
+include 'spring-session-couchbase-listener'
+include 'spring-session-couchbase'
+include 'samples/security'
